@@ -1,7 +1,7 @@
 import React from "react";
-import { SearchBar } from "./SearchBar";
-import { DropdownItemFilter } from "./DropdownItemFilter";
-import { ShoppingCart } from "../shopping-cart/ShoppingCart";
+import SearchBar from "./SearchBar";
+import DropdownItemFilter from "./DropdownItemFilter";
+import ShoppingCart from "../shopping-cart/ShoppingCart";
 
 function NavbarComp() {
   return (
