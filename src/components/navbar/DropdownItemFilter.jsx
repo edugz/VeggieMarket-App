@@ -1,5 +1,7 @@
 import React from "react";
 
-const DropdownItemFilter = () => {};
+function DropdownItemFilter() {
+  return <div>DropdownItemFilter</div>;
+}
 
 export default DropdownItemFilter;
