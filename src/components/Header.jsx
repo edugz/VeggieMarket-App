@@ -1,11 +1,22 @@
 import React from "react";
+import "./Header.css";
 
 function Header() {
   return (
-    <div>
-      <h1>The Veggie Market</h1>
-      <h3>Order Veggies for your Home or your Company</h3>
-      <h5>Top Quality Organic Farming</h5>
+    <div className="header-container">
+      <img src="/images/sun-header.png" alt="sun-image" />
+      <div className="header-center">
+        <h1>The Market</h1>
+        <p>
+          <i>Top Quality Items</i>
+        </p>
+        <div className="header-buttons">
+          <button>About Us</button>
+          <button>Events</button>
+          <button>Subscription</button>
+        </div>
+      </div>
+      <></>
     </div>
   );
 }
