@@ -15,7 +15,6 @@
   flex-grow: 1;
   width: 440px;
   min-width: 440px;
-  max-width: calc(100% - 280px);
 }
 
 /* Title & paragraph */
