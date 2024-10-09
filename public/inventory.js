@@ -56,7 +56,7 @@ const inventory = [
   {
     id: 1,
     name: "Potato",
-    image: "./images/placeholder-square",
+    image: "./images/veggies/potato.png",
     prices: [
       { weight: "1kg", price: potatoBP },
       { weight: "10kg", price: calculateTotalPrice(potatoBP, 10) },
@@ -67,7 +67,7 @@ const inventory = [
   {
     id: 2,
     name: "Carrot",
-    image: "./images/placeholder-square",
+    image: "./images/veggies/carrot.png",
     prices: [
       { weight: "1kg", price: carrotBP },
       { weight: "10kg", price: calculateTotalPrice(carrotBP, 10) },
@@ -78,7 +78,7 @@ const inventory = [
   {
     id: 3,
     name: "Onion",
-    image: "./images/placeholder-square",
+    image: "./images/veggies/onion.png",
     prices: [
       { weight: "1kg", price: onionBP },
       { weight: "10kg", price: calculateTotalPrice(onionBP, 10) },
@@ -89,7 +89,7 @@ const inventory = [
   {
     id: 4,
     name: "Broccoli",
-    image: "./images/placeholder-square",
+    image: "./images/veggies/broccoli.png",
     prices: [
       { weight: "1kg", price: broccoliBP },
       { weight: "10kg", price: calculateTotalPrice(broccoliBP, 10) },
@@ -100,7 +100,7 @@ const inventory = [
   {
     id: 5,
     name: "Spinach",
-    image: "./images/placeholder-square",
+    image: "./images/veggies/spinach.png",
     prices: [
       { weight: "1kg", price: spinachBP },
       { weight: "10kg", price: calculateTotalPrice(spinachBP, 10) },
@@ -111,12 +111,12 @@ const inventory = [
   {
     id: 6,
     name: "String Beans",
-    image: "./images/placeholder-square",
+    image: "./images/veggies/string-beans01.png",
     prices: [
-      { weight: "1kg", price: str },
-      { weight: "10kg", price: calculateTotalPrice(str, 10) },
-      { weight: "50kg", price: calculateTotalPrice(str, 50) },
-      { weight: "100kg", price: calculateTotalPrice(str, 100) },
+      { weight: "1kg", price: stringBeansBP },
+      { weight: "10kg", price: calculateTotalPrice(stringBeansBP, 10) },
+      { weight: "50kg", price: calculateTotalPrice(stringBeansBP, 50) },
+      { weight: "100kg", price: calculateTotalPrice(stringBeansBP, 100) },
     ],
   },
 ];
