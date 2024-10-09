@@ -1,5 +1,6 @@
 import React from "react";
 import "./ProductItem.css";
+import Counter from "./Counter/Counter";
 
 function ProductItem(props) {
   return (
@@ -9,11 +10,7 @@ function ProductItem(props) {
         {props.name} {props.weight}
       </h3>
       <p>¥ {props.price}</p>
-      <div className="add-product-container">
-        <button>-</button>
-        <span> x </span>
-        <button>+</button>
-      </div>
+      <Counter />
     </div>
   );
 }

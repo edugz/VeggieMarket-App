@@ -1,0 +1,32 @@
+/* Buttons */
+
+.counter-container button {
+  color: white;
+  margin: 10px 0;
+  padding: 5px 10px;
+  font-size: 1rem;
+  background-color: #ff8c00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+  width: 40px;
+}
+
+.item-container button:hover {
+  background-color: #e07b00;
+  transform: translateY(-1px);
+}
+
+.item-container button:active {
+  background-color: #c36b00;
+  transform: translateY(1px);
+}
+
+.counter-container input {
+  width: 25px;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 0px 15px;
+  border-radius: 5px;
+}

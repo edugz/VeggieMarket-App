@@ -6,9 +6,9 @@ function Header() {
     <div className="header-container">
       <img src="/images/sun03.png" alt="sun-image" />
       <div className="header-center">
-        <h1>The Market</h1>
+        <h1>The Veggie Market</h1>
         <p>
-          <i>Top Quality </i>
+          <i>Top Quality Organic Vegetables </i>
         </p>
         <div className="header-buttons">
           <button>About Us</button>
