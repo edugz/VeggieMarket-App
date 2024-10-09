@@ -1,0 +1,15 @@
+.shopping-cart-container {
+  position: absolute;
+  right: 0px;
+}
+
+.shopping-cart-container .cart-icon {
+  height: 120px;
+  margin: 50px 40px 70px;
+  transition: opacity 0.2s ease;
+}
+
+.cart-icon.shrink {
+  opacity: 0;
+  pointer-events: none;
+}

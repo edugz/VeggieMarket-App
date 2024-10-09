@@ -1,0 +1,14 @@
+.search-bar-container {
+  position: absolute;
+}
+
+.search-bar-container .search-icon {
+  height: 100px;
+  margin: 50px 10px 70px;
+  transition: opacity 0.2s ease;
+}
+
+.search-icon.shrink {
+  opacity: 0;
+  pointer-events: none;
+}

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap");
+
 .header-container {
   background: linear-gradient(
     to right,
@@ -9,6 +11,18 @@
   height: 240px;
   margin: 0 auto;
   padding-right: 300px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: height 0.8s ease, padding 0.3s ease;
+}
+
+.header-container.shrink {
+  height: 120px;
+  padding-top: 25px;
 }
 
 .header-center {
@@ -17,14 +31,26 @@
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  width: 540px;
-  min-width: 540px;
+  width: 600px;
+  min-width: 600px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  transition: width 0.8s ease, padding 0.3s ease;
+}
+
+.header-container.shrink .header-center {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 /* Title & paragraph */
 
 .header-container h1 {
-  font-size: 4rem;
+  font-family: "Qwitcher Grypen", cursive;
+  font-weight: 700;
+  font-size: 6rem;
   padding: 3.2px 8px 8px;
 }
 
@@ -37,6 +63,7 @@
 
 .header-buttons {
   margin-top: 15px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .header-buttons button {
@@ -48,7 +75,6 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .header-buttons button:hover {
@@ -59,11 +85,22 @@
   background-color: #2a4e1f;
 }
 
+.header-buttons.shrink {
+  opacity: 0;
+  visibility: hidden;
+}
+
 /* Image */
 
-.header-container img {
+.header-container .header-image {
   height: 200px;
   width: 200px;
   min-width: 200px;
   margin-left: 50px;
+  transition: opacity 0.3s ease;
+}
+
+.header-container.shrink .header-image {
+  opacity: 0;
+  pointer-events: none;
 }
