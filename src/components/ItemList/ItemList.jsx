@@ -1,9 +1,9 @@
 import React from "react";
-import ProductItem from "../ProductItem/ProductItem";
+import ProductItem from "./ProductItem/ProductItem";
 import "./ItemList.css";
 import inventory from "/public/inventory";
 
-function ItemList() {
+function ItemList({ addToCart, subtractFromCart }) {
   return (
     <div className="item-list-container">
       {inventory.map(({ id, name, image, prices }) =>
@@ -15,6 +15,8 @@ function ItemList() {
             image={image}
             weight={priceItem.weight}
             price={priceItem.price}
+            addToCart={addToCart}
+            subtractFromCart={subtractFromCart}
           />
         ))
       )}

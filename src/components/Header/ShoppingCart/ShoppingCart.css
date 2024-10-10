@@ -3,6 +3,19 @@
   right: 0px;
 }
 
+.cart-count {
+  font-size: 2.2rem;
+  position: absolute;
+  right: 140px;
+  top: 125px;
+  color: #2e5f21;
+}
+
+.cart-count.shrink {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .shopping-cart-container .cart-icon {
   height: 120px;
   margin: 50px 40px 70px;

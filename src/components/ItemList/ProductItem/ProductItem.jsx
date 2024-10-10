@@ -27,6 +27,8 @@ function ProductItem(props) {
     onIncrement: handleIncrement,
     onDecrement: handleDecrement,
     onManualChange: handleManualChange,
+    addToCart: props.addToCart,
+    subtractFromCart: props.subtractFromCart,
   };
 
   return (
@@ -37,7 +39,11 @@ function ProductItem(props) {
       </h3>
       <p>¥ {props.price}</p>
       <Counter {...counterProps} />
-      {count > 0 && <p className="total-p">Total: ¥ {props.price * count} </p>}
+      {count > 0 && (
+        <div className="add-to-cart-container">
+          <p className="total-p">Total: ¥ {props.price * count} </p>
+        </div>
+      )}
     </div>
   );
 }

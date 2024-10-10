@@ -3,7 +3,7 @@ import "./Header.css";
 import SearchBar from "./SearchBar/SearchBar";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
 
-function Header() {
+function Header({ cartCount }) {
   const [isShrunk, setIsShrunk] = useState(false);
 
   const handleScroll = () => {
@@ -40,7 +40,7 @@ function Header() {
         </div>
       </div>
       <SearchBar isShrunk={isShrunk} />
-      <ShoppingCart isShrunk={isShrunk} />
+      <ShoppingCart isShrunk={isShrunk} cartCount={cartCount} />
     </div>
   );
 }
