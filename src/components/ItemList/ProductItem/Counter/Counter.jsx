@@ -1,30 +1,12 @@
 import React from "react";
 import "./Counter.css";
 
-function Counter({
-  count,
-  onIncrement,
-  onDecrement,
-  onManualChange,
-  addToCart,
-  subtractFromCart,
-}) {
-  function handleIncrementAndAdd() {
-    addToCart(1);
-    onIncrement();
-  }
-
-  function handleDecrementAndSubtract() {
-    if (count > 0) {
-      subtractFromCart(1);
-    }
-    onDecrement();
-  }
+function Counter({ count, onManualChange, onDecrement, onIncrement }) {
   return (
     <div className="counter-container">
-      <button onClick={handleDecrementAndSubtract}>-</button>
+      <button onClick={onDecrement}>-</button>
       <input value={count} onChange={onManualChange} />
-      <button onClick={handleIncrementAndAdd}>+</button>
+      <button onClick={onIncrement}>+</button>
     </div>
   );
 }

@@ -7,18 +7,26 @@ function ProductItem(props) {
 
   function handleIncrement() {
     setCount(count + 1);
+    props.addToCart(1);
   }
 
   function handleDecrement() {
     if (count > 0) {
       setCount(count - 1);
+      props.subtractFromCart(1);
     }
   }
 
   function handleManualChange(event) {
     const value = parseInt(event.target.value, 10);
     if (!isNaN(value) && value >= 0) {
+      const diff = value - count;
       setCount(value);
+      if (diff > 0) {
+        props.addToCart(diff);
+      } else if (diff < 0) {
+        props.subtractFromCart(diff * -1);
+      }
     }
   }
 
@@ -27,8 +35,6 @@ function ProductItem(props) {
     onIncrement: handleIncrement,
     onDecrement: handleDecrement,
     onManualChange: handleManualChange,
-    addToCart: props.addToCart,
-    subtractFromCart: props.subtractFromCart,
   };
 
   return (
