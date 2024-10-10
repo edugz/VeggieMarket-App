@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer";
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const addToCart = (amount) => {
     setCartCount((prevCount) => prevCount + amount);
@@ -15,10 +16,18 @@ function App() {
     setCartCount((prevCount) => prevCount - amount);
   };
 
+  const handleSearchChange = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <div className="app-container">
-      <Header cartCount={cartCount} />
-      <ItemList addToCart={addToCart} subtractFromCart={subtractFromCart} />
+      <Header cartCount={cartCount} handleSearchChange={handleSearchChange} />
+      <ItemList
+        addToCart={addToCart}
+        subtractFromCart={subtractFromCart}
+        searchQuery={searchQuery}
+      />
       <Footer />
     </div>
   );

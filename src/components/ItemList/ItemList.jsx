@@ -3,10 +3,14 @@ import ProductItem from "./ProductItem/ProductItem";
 import "./ItemList.css";
 import inventory from "/public/inventory";
 
-function ItemList({ addToCart, subtractFromCart }) {
+function ItemList({ addToCart, subtractFromCart, searchQuery }) {
+  const filteredItems = inventory.filter(({ name }) =>
+    name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="item-list-container">
-      {inventory.map(({ id, name, image, prices }) =>
+      {filteredItems.map(({ id, name, image, prices }) =>
         prices.map((priceItem, index) => (
           <ProductItem
             key={`${id}-${index}`}
