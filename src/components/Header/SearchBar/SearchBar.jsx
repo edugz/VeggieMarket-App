@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./SearchBar.css";
 
 function SearchBar({ isShrunk, handleInputChange }) {
+  const inputRef = useRef(null);
+
   const handleClick = () => {
-    console.log("Image clicked!");
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
+
   return (
     <div className={`search-bar-container ${!isShrunk ? "shrink" : ""}`}>
       <img
@@ -14,6 +19,7 @@ function SearchBar({ isShrunk, handleInputChange }) {
         onClick={handleClick}
       />
       <input
+        ref={inputRef}
         className="search-box"
         type="text"
         placeholder="Search..."

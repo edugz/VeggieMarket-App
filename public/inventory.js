@@ -58,10 +58,10 @@ const inventory = [
     name: "Potato",
     image: "./images/veggies/potato.png",
     prices: [
-      { weight: "1kg", price: potatoBP },
-      { weight: "10kg", price: calculateTotalPrice(potatoBP, 10) },
-      { weight: "50kg", price: calculateTotalPrice(potatoBP, 50) },
-      { weight: "100kg", price: calculateTotalPrice(potatoBP, 100) },
+      { weight: 1, price: potatoBP },
+      { weight: 10, price: calculateTotalPrice(potatoBP, 10) },
+      { weight: 50, price: calculateTotalPrice(potatoBP, 50) },
+      { weight: 100, price: calculateTotalPrice(potatoBP, 100) },
     ],
   },
   {
@@ -69,10 +69,10 @@ const inventory = [
     name: "Carrot",
     image: "./images/veggies/carrot.png",
     prices: [
-      { weight: "1kg", price: carrotBP },
-      { weight: "10kg", price: calculateTotalPrice(carrotBP, 10) },
-      { weight: "50kg", price: calculateTotalPrice(carrotBP, 50) },
-      { weight: "100kg", price: calculateTotalPrice(carrotBP, 100) },
+      { weight: 1, price: carrotBP },
+      { weight: 10, price: calculateTotalPrice(carrotBP, 10) },
+      { weight: 50, price: calculateTotalPrice(carrotBP, 50) },
+      { weight: 100, price: calculateTotalPrice(carrotBP, 100) },
     ],
   },
   {
@@ -80,10 +80,10 @@ const inventory = [
     name: "Onion",
     image: "./images/veggies/onion.png",
     prices: [
-      { weight: "1kg", price: onionBP },
-      { weight: "10kg", price: calculateTotalPrice(onionBP, 10) },
-      { weight: "50kg", price: calculateTotalPrice(onionBP, 50) },
-      { weight: "100kg", price: calculateTotalPrice(onionBP, 100) },
+      { weight: 1, price: onionBP },
+      { weight: 10, price: calculateTotalPrice(onionBP, 10) },
+      { weight: 50, price: calculateTotalPrice(onionBP, 50) },
+      { weight: 100, price: calculateTotalPrice(onionBP, 100) },
     ],
   },
   {
@@ -91,10 +91,10 @@ const inventory = [
     name: "Broccoli",
     image: "./images/veggies/broccoli.png",
     prices: [
-      { weight: "1kg", price: broccoliBP },
-      { weight: "10kg", price: calculateTotalPrice(broccoliBP, 10) },
-      { weight: "50kg", price: calculateTotalPrice(broccoliBP, 50) },
-      { weight: "100kg", price: calculateTotalPrice(broccoliBP, 100) },
+      { weight: 1, price: broccoliBP },
+      { weight: 10, price: calculateTotalPrice(broccoliBP, 10) },
+      { weight: 50, price: calculateTotalPrice(broccoliBP, 50) },
+      { weight: 100, price: calculateTotalPrice(broccoliBP, 100) },
     ],
   },
   {
@@ -102,10 +102,10 @@ const inventory = [
     name: "Spinach",
     image: "./images/veggies/spinach.png",
     prices: [
-      { weight: "1kg", price: spinachBP },
-      { weight: "10kg", price: calculateTotalPrice(spinachBP, 10) },
-      { weight: "50kg", price: calculateTotalPrice(spinachBP, 50) },
-      { weight: "100kg", price: calculateTotalPrice(spinachBP, 100) },
+      { weight: 1, price: spinachBP },
+      { weight: 10, price: calculateTotalPrice(spinachBP, 10) },
+      { weight: 50, price: calculateTotalPrice(spinachBP, 50) },
+      { weight: 100, price: calculateTotalPrice(spinachBP, 100) },
     ],
   },
   {
@@ -113,10 +113,10 @@ const inventory = [
     name: "String Beans",
     image: "./images/veggies/string-beans01.png",
     prices: [
-      { weight: "1kg", price: stringBeansBP },
-      { weight: "10kg", price: calculateTotalPrice(stringBeansBP, 10) },
-      { weight: "50kg", price: calculateTotalPrice(stringBeansBP, 50) },
-      { weight: "100kg", price: calculateTotalPrice(stringBeansBP, 100) },
+      { weight: 1, price: stringBeansBP },
+      { weight: 10, price: calculateTotalPrice(stringBeansBP, 10) },
+      { weight: 50, price: calculateTotalPrice(stringBeansBP, 50) },
+      { weight: 100, price: calculateTotalPrice(stringBeansBP, 100) },
     ],
   },
 ];

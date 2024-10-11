@@ -41,7 +41,7 @@ function ProductItem(props) {
     <div className="item-container">
       <img src={props.image} alt="" />
       <h3>
-        {props.name} {props.weight}
+        {props.name} {props.weight}kg
       </h3>
       <p>¥ {props.price}</p>
       <Counter {...counterProps} />
