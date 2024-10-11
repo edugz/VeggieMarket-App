@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 import "./Header.css";
 import SearchBar from "./SearchBar/SearchBar";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
@@ -6,6 +7,8 @@ import ShoppingCart from "./ShoppingCart/ShoppingCart";
 function Header({ cartCount, handleSearchChange }) {
   const [isShrunk, setIsShrunk] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
+
+  const location = useLocation();
 
   const updateShrinkState = (inputValue) => {
     const shouldShrink = inputValue.length > 0 || window.scrollY > 50;
@@ -35,20 +38,28 @@ function Header({ cartCount, handleSearchChange }) {
     updateShrinkState(inputValue);
   };
 
+  const headerClass = `header-container ${isShrunk ? "shrink" : ""} ${
+    location.pathname === "/about-us" ? "while-about" : ""
+  }`;
+
   return (
-    <div className={`header-container ${isShrunk ? "shrink" : ""}`}>
+    <div className={headerClass}>
       <img
         src="/images/sun03.png"
         alt="sun-image"
         className={`header-image ${isShrunk ? "shrink" : ""}`}
       />
       <div className="header-center">
-        <h1>The Veggie Market</h1>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <h1>The Veggie Market</h1>
+        </Link>
         <p>
           <i>Top Quality Organic Vegetables </i>
         </p>
         <div className={`header-buttons ${isShrunk ? "shrink" : ""}`}>
-          <button>About Us</button>
+          <Link to="/about-us" style={{ textDecoration: "none" }}>
+            <button>About Us</button>
+          </Link>
           <button>Events</button>
           <button>Subscription</button>
         </div>

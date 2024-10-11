@@ -4,8 +4,8 @@ import "./App.css";
 import Header from "../Header/Header";
 import ItemList from "../ItemList/ItemList";
 import Footer from "../Footer/Footer";
-import AboutUs from "./Pages/AboutUs";
-import NotFound from "./Pages/NotFound";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import NotFound from "../Pages/NotFound/NotFound";
 
 function App() {
   const [cartCount, setCartCount] = useState(0);

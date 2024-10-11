@@ -22,7 +22,7 @@
 
 .header-container.shrink {
   height: 170px;
-  padding-top:10px;
+  padding-top: 10px;
 }
 
 .header-center {
@@ -52,6 +52,7 @@
   font-weight: 700;
   font-size: 6rem;
   padding: 3.2px 8px 8px;
+  color: black;
 }
 
 .header-container p {
@@ -103,4 +104,47 @@
 .header-container.shrink .header-image {
   opacity: 0;
   pointer-events: none;
+}
+
+/*********************************************************/
+
+/* While on About Us Page*/
+
+.header-container.while-about {
+  height: 100px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.8),
+    rgba(240, 240, 240, 0.4)
+  );
+  padding: 0px;
+}
+
+.header-container.while-about h1 {
+  margin-top: 60px;
+}
+
+.header-container.while-about button {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.header-container.while-about p {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.header-container.while-about img {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.header-container.while-about input {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.header-container.while-about h2 {
+  opacity: 0;
+  visibility: hidden;
 }
