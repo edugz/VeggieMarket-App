@@ -32,4 +32,14 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.about-container .go-back-button:hover {
+  background-color: #d4d4d4;
+}
+
+.about-container .go-back-button:active {
+  background-color: #b0b0b0;
+  transform: translateY(1px);
 }

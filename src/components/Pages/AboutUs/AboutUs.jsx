@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./AboutUs.css";
 
 function AboutUs() {
@@ -40,7 +41,9 @@ function AboutUs() {
           Pellentesque est sem.
         </p>
       </div>
-      <button className="go-back-button">Back</button>
+      <Link to="/">
+        <button className="go-back-button">Back</button>
+      </Link>
     </div>
   );
 }

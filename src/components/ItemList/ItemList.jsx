@@ -4,6 +4,10 @@ import "./ItemList.css";
 import inventory from "/public/inventory";
 
 function ItemList({ addToCart, subtractFromCart, searchQuery }) {
+  /* Scroll back to Top of Page whenever it is accessed */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const lowercasedQuery = searchQuery.trim().toLowerCase();
 
   /* Filter prices to get only those that match the search query */
@@ -24,24 +28,24 @@ function ItemList({ addToCart, subtractFromCart, searchQuery }) {
 
     if (filteredPrices.length > 0) {
       return filteredPrices.map((priceItem, index) => (
-          <ProductItem
-            key={`${id}-${index}`}
-            weight={priceItem.weight}
-            price={priceItem.price}
-            {...productItemCommonProps}
-          />
+        <ProductItem
+          key={`${id}-${index}`}
+          weight={priceItem.weight}
+          price={priceItem.price}
+          {...productItemCommonProps}
+        />
       ));
     }
 
     /* If no prices match the weight, check if the name matches */
     if (name.toLowerCase().includes(lowercasedQuery)) {
       return prices.map((priceItem, index) => (
-          <ProductItem
-            key={`${id}-${index}`}
-            weight={priceItem.weight}
-            price={priceItem.price}
-            {...productItemCommonProps}
-          />
+        <ProductItem
+          key={`${id}-${index}`}
+          weight={priceItem.weight}
+          price={priceItem.price}
+          {...productItemCommonProps}
+        />
       ));
     }
 
