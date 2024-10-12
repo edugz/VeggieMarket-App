@@ -7,37 +7,44 @@ function useCart() {
   const addToCart = (item) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find(
-        (cartItem) => cartItem.key === item.key
+        (cartItem) =>
+          cartItem.name === item.name && cartItem.weight === item.weight
       );
+
       if (existingItem) {
         return prevCart.map((cartItem) =>
-          cartItem.key === item.key
-            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+          cartItem.name === item.name && cartItem.weight === item.weight
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         );
+      } else {
+        return [...prevCart, { ...item, quantity: 1 }];
       }
-      return [...prevCart, item];
     });
-    console.log(cart);
   };
 
   const subtractFromCart = (item) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find(
-        (cartItem) => cartItem.key === item.key
+        (cartItem) =>
+          cartItem.name === item.name && cartItem.weight === item.weight
       );
 
       if (existingItem) {
         if (existingItem.quantity > 1) {
           return prevCart.map((cartItem) =>
-            cartItem.key === item.key
+            cartItem.name === item.name && cartItem.weight === item.weight
               ? { ...cartItem, quantity: cartItem.quantity - 1 }
               : cartItem
           );
         } else {
-          return prevCart.filter((cartItem) => cartItem.key !== item.key);
+          return prevCart.filter(
+            (cartItem) =>
+              !(cartItem.name === item.name && cartItem.weight === item.weight)
+          );
         }
       }
+
       return prevCart;
     });
   };

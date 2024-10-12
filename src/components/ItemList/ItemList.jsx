@@ -47,14 +47,18 @@ function ItemList({
 
     /* Check if any name includes the user query */
     if (name.toLowerCase().includes(lowercasedQuery)) {
-      return prices.map((priceItem, index) => (
-        <ProductItem
-          key={`${id}-${index}`}
-          weight={priceItem.weight}
-          price={priceItem.price}
-          {...productItemCommonProps}
-        />
-      ));
+      return prices.map((priceItem, index) => {
+        const productItemProps = {
+          key: `${id}-${index}`,
+          weight: priceItem.weight,
+          price: priceItem.price,
+          ...productItemCommonProps,
+        };
+
+        console.log(productItemProps);
+
+        return <ProductItem {...productItemProps} />;
+      });
     }
 
     /* Check if any weight matches the user query */

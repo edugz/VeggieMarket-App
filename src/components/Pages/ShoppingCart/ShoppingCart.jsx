@@ -18,7 +18,9 @@ function ShoppingCart({ cart }) {
                   {item.name} {item.weight} kg
                 </span>
                 <span className="item-quantity">{item.quantity}</span>
-                <span className="item-price">${item.price}</span>
+                <span className="item-price">
+                  ${item.price * item.quantity}
+                </span>
               </li>
             ))}
           </ul>

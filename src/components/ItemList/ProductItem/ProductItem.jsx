@@ -19,11 +19,13 @@ function ProductItem({
   function handleAddToCart() {
     const itemToAdd = {
       key: `${id}-${index}`,
+      index,
       name,
       weight,
       price,
-      quantity: count + 1,
     };
+    console.log(itemToAdd);
+
     addToCart(itemToAdd);
     handleIncrement();
   }
