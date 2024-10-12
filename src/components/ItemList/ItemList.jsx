@@ -8,15 +8,26 @@ function ItemList({ addToCart, subtractFromCart, searchQuery }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const lowercasedQuery = searchQuery.trim().toLowerCase();
 
-  /* Filter prices to get only those that match the search query */
-  const getFilteredPrices = (prices) => {
+  /* Function to Filter Inventory base on 'name' or 'weight' according to user input */
+  const filteredItems = inventory.filter(({ name, prices }) => {
+    const nameMatches = name.toLowerCase().includes(lowercasedQuery);
+    const weightMatches = prices.some(
+      ({ weight }) => weight.toString() === lowercasedQuery
+    );
+    return nameMatches || weightMatches;
+  });
+
+  /* Function to filter through prices to get weights and compare to user query */
+  const getFilteredWeight = (prices) => {
     return prices.filter(({ weight }) => weight.toString() === lowercasedQuery);
   };
 
+  /* Render Filtered Inventory Function */
   const renderProductItems = (id, name, image, prices) => {
-    const filteredPrices = getFilteredPrices(prices);
+    const filteredWeight = getFilteredWeight(prices);
 
     const productItemCommonProps = {
       id,
@@ -26,18 +37,7 @@ function ItemList({ addToCart, subtractFromCart, searchQuery }) {
       subtractFromCart,
     };
 
-    if (filteredPrices.length > 0) {
-      return filteredPrices.map((priceItem, index) => (
-        <ProductItem
-          key={`${id}-${index}`}
-          weight={priceItem.weight}
-          price={priceItem.price}
-          {...productItemCommonProps}
-        />
-      ));
-    }
-
-    /* If no prices match the weight, check if the name matches */
+    /* Check if any name includes the user query */
     if (name.toLowerCase().includes(lowercasedQuery)) {
       return prices.map((priceItem, index) => (
         <ProductItem
@@ -49,34 +49,31 @@ function ItemList({ addToCart, subtractFromCart, searchQuery }) {
       ));
     }
 
-    return null; /* Return null if neither match */
+    /* Check if any weight matches the user query */
+    if (filteredWeight.length > 0) {
+      return filteredWeight.map((priceItem, index) => (
+        <ProductItem
+          key={`${id}-${index}`}
+          weight={priceItem.weight}
+          price={priceItem.price}
+          {...productItemCommonProps}
+        />
+      ));
+    }
+
+    return null; // Return null if neither match
   };
 
-  /* If the search query is empty, return the full inventory */
-  if (!lowercasedQuery) {
-    return (
+  /* Render Full Inventory or Filtered Array */
+  return (
+    <div className="big-div-boy">
+      <h2 className="list-title">Our Harvest</h2>
       <div className="item-list-container">
-        {inventory.map(({ id, name, image, prices }) =>
-          renderProductItems(id, name, image, prices)
+        {(lowercasedQuery ? filteredItems : inventory).map(
+          ({ id, name, image, prices }) =>
+            renderProductItems(id, name, image, prices)
         )}
       </div>
-    );
-  }
-
-  const filteredItems = inventory.filter(({ name, prices }) => {
-    const nameMatches = name.toLowerCase().includes(lowercasedQuery);
-    const weightMatches = prices.some(
-      ({ weight }) => weight.toString() === lowercasedQuery
-    );
-    return nameMatches || weightMatches;
-  });
-
-  /* Final Renderization of ProductItems */
-  return (
-    <div className="item-list-container">
-      {filteredItems.map(({ id, name, image, prices }) =>
-        renderProductItems(id, name, image, prices)
-      )}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./Header.css";
 import SearchBar from "./SearchBar/SearchBar";
-import ShoppingCart from "./ShoppingCart/ShoppingCart";
+import ShoppingCartIcon from "./ShoppingCartIcon/ShoppingCartIcon";
 
 function Header({ cartCount, handleSearchChange }) {
   const [isShrunk, setIsShrunk] = useState(false);
@@ -31,12 +31,22 @@ function Header({ cartCount, handleSearchChange }) {
     };
   }, [searchInputValue]);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setSearchInputValue(inputValue);
     handleSearchChange(inputValue);
     updateShrinkState(inputValue);
   };
+
+  useEffect(() => {
+    if (searchInputValue) {
+      window.scrollTo({ top: 120, behavior: "smooth" });
+    }
+  }, [searchInputValue]);
 
   const headerClass = `header-container ${isShrunk ? "shrink" : ""} ${
     location.pathname === "/about-us" ? "while-about" : ""
@@ -50,7 +60,7 @@ function Header({ cartCount, handleSearchChange }) {
         className={`header-image ${isShrunk ? "shrink" : ""}`}
       />
       <div className="header-center">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none" }} onClick={scrollToTop}>
           <h1>The Veggie Market</h1>
         </Link>
         <p>
@@ -65,7 +75,7 @@ function Header({ cartCount, handleSearchChange }) {
         </div>
       </div>
       <SearchBar isShrunk={isShrunk} handleInputChange={handleInputChange} />
-      <ShoppingCart isShrunk={isShrunk} cartCount={cartCount} />
+      <ShoppingCartIcon isShrunk={isShrunk} cartCount={cartCount} />
     </div>
   );
 }

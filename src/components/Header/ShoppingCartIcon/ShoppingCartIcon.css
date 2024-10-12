@@ -1,4 +1,4 @@
-.shopping-cart-container {
+.shopping-cart-icon-container {
   position: absolute;
   right: 0px;
 }
@@ -20,7 +20,7 @@
   pointer-events: none;
 }
 
-.shopping-cart-container .cart-icon {
+.shopping-cart-icon-container .cart-icon {
   height: 120px;
   margin: 50px 40px 70px;
   transition: opacity 0.2s ease;
