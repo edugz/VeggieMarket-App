@@ -6,18 +6,23 @@ function ShoppingCart({ cart }) {
     (total, item) => total + item.price * item.quantity,
     0
   );
+
   return (
     <div className="shopping-cart-main-container">
       <div className="shopping-cart-container">
         <h2>Shopping Cart</h2>
         <div className="cart-list">
           <ul>
-            {cart.map((item, index) => (
-              <li key={index}>
+            {cart.map((item) => (
+              <li key={`${item.name}-${item.weight}`}>
                 <span className="item-name">
                   {item.name} {item.weight} kg
                 </span>
-                <span className="item-quantity">{item.quantity}</span>
+                <div className="quantity-modifier">
+                  <button>-</button>
+                  <span className="item-quantity">{item.quantity}</span>
+                  <button>+</button>
+                </div>
                 <span className="item-price">
                   ${item.price * item.quantity}
                 </span>

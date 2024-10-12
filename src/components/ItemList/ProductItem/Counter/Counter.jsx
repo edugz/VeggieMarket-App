@@ -5,7 +5,7 @@ function Counter({ count, onManualChange, onSubtract, onAdd }) {
   return (
     <div className="counter-container">
       <button onClick={onSubtract}>-</button>
-      <input value={count} onChange={onManualChange} />
+      <input value={count} onChange={onManualChange} readOnly />
       <button onClick={onAdd}>+</button>
     </div>
   );

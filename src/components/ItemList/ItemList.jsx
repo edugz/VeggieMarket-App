@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import ProductItem from "./ProductItem/ProductItem";
 import "./ItemList.css";
 import inventory from "/public/inventory";
@@ -10,10 +9,9 @@ function ItemList({
   searchQuery,
   addToCart,
   subtractFromCart,
-  productCounts,
   updateCount,
+  productCounts,
 }) {
-
   const lowercasedQuery = searchQuery.trim().toLowerCase();
 
   /* Function to Filter Inventory base on 'name' or 'weight' according to user input */

@@ -33,17 +33,19 @@ function ProductItem({
   }
 
   function handleSubtractFromCart() {
-    const itemToSubtract = {
-      key: uniqueId,
-      name,
-      weight,
-      price,
-      quantity: count,
-    };
+    if (count > 0) {
+      const itemToSubtract = {
+        key: uniqueId,
+        name,
+        weight,
+        price,
+        quantity: count,
+      };
 
-    subtractFromCart(itemToSubtract);
-    updateCount(uniqueId, Math.max(count - 1, 0));
-    subtractFromCount(1)
+      subtractFromCart(itemToSubtract);
+      updateCount(uniqueId, Math.max(count - 1, 0));
+      subtractFromCount(1);
+    }
   }
 
   function handleManualChange(event) {

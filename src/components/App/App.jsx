@@ -23,24 +23,20 @@ function App() {
     cartCount,
     setCartCount,
     cart,
+    setCart,
     addToCart,
     subtractFromCart,
     addToCount,
     subtractFromCount,
+    productCounts,
+    setProductCounts,
+    updateCount,
   } = useCart();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [productCounts, setProductCounts] = useState({});
 
   const handleSearchChange = (query) => {
     setSearchQuery(query);
-  };
-
-  const updateCount = (id, newCount) => {
-    setProductCounts((prevCounts) => ({
-      ...prevCounts,
-      [id]: newCount,
-    }));
   };
 
   return (
@@ -66,7 +62,21 @@ function App() {
             }
           />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/shopping-cart" element={<ShoppingCart cart={cart} />} />
+          <Route
+            path="/shopping-cart"
+            element={
+              <ShoppingCart
+                cart={cart}
+                addToCart={addToCart}
+                updateCount={updateCount}
+                addToCount={addToCount}
+                subtractFromCart={subtractFromCart}
+                subtractFromCount={subtractFromCount}
+                setCart={setCart}
+                productCounts={productCounts}
+              />
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
