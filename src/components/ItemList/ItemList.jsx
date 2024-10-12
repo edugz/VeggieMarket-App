@@ -3,7 +3,13 @@ import ProductItem from "./ProductItem/ProductItem";
 import "./ItemList.css";
 import inventory from "/public/inventory";
 
-function ItemList({ addToCart, subtractFromCart, searchQuery }) {
+function ItemList({
+  addToCount,
+  subtractFromCount,
+  searchQuery,
+  addToCart,
+  subtractFromCart,
+}) {
   /* Scroll back to Top of Page whenever it is accessed */
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,6 +39,8 @@ function ItemList({ addToCart, subtractFromCart, searchQuery }) {
       id,
       name,
       image,
+      addToCount,
+      subtractFromCount,
       addToCart,
       subtractFromCart,
     };

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import useCart from "../hooks/useCart.js";
 
 /* Components Import */
 import Header from "../Header/Header";
@@ -17,16 +18,16 @@ import NotFound from "../Pages/NotFound/NotFound";
 /* Code Renderization */
 
 function App() {
-  const [cartCount, setCartCount] = useState(0);
+  const {
+    cart,
+    cartCount,
+    addToCart,
+    subtractFromCart,
+    addToCount,
+    subtractFromCount,
+  } = useCart();
+
   const [searchQuery, setSearchQuery] = useState("");
-
-  const addToCart = (amount) => {
-    setCartCount((prevCount) => prevCount + amount);
-  };
-
-  const subtractFromCart = (amount) => {
-    setCartCount((prevCount) => prevCount - amount);
-  };
 
   const handleSearchChange = (query) => {
     setSearchQuery(query);
@@ -41,14 +42,16 @@ function App() {
             path="/"
             element={
               <ItemList
+                addToCount={addToCount}
+                subtractFromCount={subtractFromCount}
+                searchQuery={searchQuery}
                 addToCart={addToCart}
                 subtractFromCart={subtractFromCart}
-                searchQuery={searchQuery}
               />
             }
           />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/shopping-cart" element={<ShoppingCart />} />
+          <Route path="/shopping-cart" element={<ShoppingCart cart={cart} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

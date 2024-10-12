@@ -50,7 +50,7 @@ function Header({ cartCount, handleSearchChange }) {
 
   const headerClass = `header-container ${isShrunk ? "shrink" : ""} ${
     location.pathname === "/about-us" ? "while-about" : ""
-  }`;
+  } ${location.pathname === "/shopping-cart" ? "while-about" : ""}`;
 
   return (
     <div className={headerClass}>
