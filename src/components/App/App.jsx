@@ -13,14 +13,16 @@ import Footer from "../Footer/Footer";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import ShoppingCart from "../Pages/ShoppingCart/ShoppingCart";
 import NotFound from "../Pages/NotFound/NotFound";
+import ScrollToTop from "../Pages/ScrollToTop.jsx";
 
 /**************************************************************/
 /* Code Renderization */
 
 function App() {
   const {
-    cart,
     cartCount,
+    setCartCount,
+    cart,
     addToCart,
     subtractFromCart,
     addToCount,
@@ -28,25 +30,38 @@ function App() {
   } = useCart();
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [productCounts, setProductCounts] = useState({});
 
   const handleSearchChange = (query) => {
     setSearchQuery(query);
+  };
+
+  const updateCount = (id, newCount) => {
+    setProductCounts((prevCounts) => ({
+      ...prevCounts,
+      [id]: newCount,
+    }));
   };
 
   return (
     <>
       <div className="app-container">
         <Header cartCount={cartCount} handleSearchChange={handleSearchChange} />
+        <ScrollToTop />
         <Routes>
           <Route
             path="/"
             element={
               <ItemList
                 addToCount={addToCount}
+                cartCount={cartCount}
+                setCartCount={setCartCount}
                 subtractFromCount={subtractFromCount}
                 searchQuery={searchQuery}
                 addToCart={addToCart}
                 subtractFromCart={subtractFromCart}
+                productCounts={productCounts}
+                updateCount={updateCount}
               />
             }
           />

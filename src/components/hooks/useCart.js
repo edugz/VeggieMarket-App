@@ -49,17 +49,18 @@ function useCart() {
     });
   };
 
-  const addToCount = (amount) => {
-    setCartCount((prevCount) => prevCount + amount);
+  const addToCount = (count) => {
+    setCartCount((prevCount) => prevCount + count);
   };
 
-  const subtractFromCount = (amount) => {
-    setCartCount((prevCount) => prevCount - amount);
+  const subtractFromCount = (count) => {
+    setCartCount((prevCount) => Math.max(prevCount - count, 0));
   };
 
   return {
-    cart,
     cartCount,
+    setCartCount,
+    cart,
     addToCart,
     subtractFromCart,
     addToCount,

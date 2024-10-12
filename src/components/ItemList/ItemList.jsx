@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ProductItem from "./ProductItem/ProductItem";
 import "./ItemList.css";
 import inventory from "/public/inventory";
@@ -9,11 +10,9 @@ function ItemList({
   searchQuery,
   addToCart,
   subtractFromCart,
+  productCounts,
+  updateCount,
 }) {
-  /* Scroll back to Top of Page whenever it is accessed */
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const lowercasedQuery = searchQuery.trim().toLowerCase();
 
@@ -43,34 +42,41 @@ function ItemList({
       subtractFromCount,
       addToCart,
       subtractFromCart,
+      updateCount,
     };
 
     /* Check if any name includes the user query */
     if (name.toLowerCase().includes(lowercasedQuery)) {
       return prices.map((priceItem, index) => {
+        const uniqueId = `${id}-${priceItem.weight}`;
         const productItemProps = {
-          key: `${id}-${index}`,
           weight: priceItem.weight,
           price: priceItem.price,
           ...productItemCommonProps,
+          count: productCounts[uniqueId] || 0,
         };
 
-        console.log(productItemProps);
-
-        return <ProductItem {...productItemProps} />;
+        return (
+          <ProductItem key={`${uniqueId}-${index}`} {...productItemProps} />
+        );
       });
     }
 
     /* Check if any weight matches the user query */
     if (filteredWeight.length > 0) {
-      return filteredWeight.map((priceItem, index) => (
-        <ProductItem
-          key={`${id}-${index}`}
-          weight={priceItem.weight}
-          price={priceItem.price}
-          {...productItemCommonProps}
-        />
-      ));
+      return filteredWeight.map((priceItem, index) => {
+        const uniqueId = `${id}-${priceItem.weight}`;
+        const productItemProps = {
+          weight: priceItem.weight,
+          price: priceItem.price,
+          ...productItemCommonProps,
+          count: productCounts[uniqueId] || 0,
+        };
+
+        return (
+          <ProductItem key={`${uniqueId}-${index}`} {...productItemProps} />
+        );
+      });
     }
 
     return null; // Return null if neither match

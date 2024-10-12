@@ -13,26 +13,28 @@ function ProductItem({
   subtractFromCount,
   addToCart,
   subtractFromCart,
+  count,
+  updateCount,
 }) {
-  const [count, setCount] = useState(0);
+  const uniqueId = `${id}-${weight}`;
 
   function handleAddToCart() {
     const itemToAdd = {
-      key: `${id}-${index}`,
+      key: uniqueId,
       index,
       name,
       weight,
       price,
     };
-    console.log(itemToAdd);
 
     addToCart(itemToAdd);
-    handleIncrement();
+    updateCount(uniqueId, count + 1);
+    addToCount(1);
   }
 
   function handleSubtractFromCart() {
     const itemToSubtract = {
-      key: `${id}-${index}`,
+      key: uniqueId,
       name,
       weight,
       price,
@@ -40,26 +42,15 @@ function ProductItem({
     };
 
     subtractFromCart(itemToSubtract);
-    handleDecrement();
-  }
-
-  function handleIncrement() {
-    setCount(count + 1);
-    addToCount(1);
-  }
-
-  function handleDecrement() {
-    if (count > 0) {
-      setCount(count - 1);
-      subtractFromCount(1);
-    }
+    updateCount(uniqueId, Math.max(count - 1, 0));
+    subtractFromCount(1)
   }
 
   function handleManualChange(event) {
     const value = parseInt(event.target.value, 10);
     if (!isNaN(value) && value >= 0) {
       const diff = value - count;
-      setCount(value);
+      updateCount(uniqueId, value);
       if (diff > 0) {
         addToCount(diff);
       } else if (diff < 0) {
@@ -70,7 +61,6 @@ function ProductItem({
 
   const counterProps = {
     count,
-    onDecrement: handleDecrement,
     onManualChange: handleManualChange,
     onAdd: handleAddToCart,
     onSubtract: handleSubtractFromCart,
