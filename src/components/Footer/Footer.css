@@ -11,6 +11,15 @@
 .footer-container p {
   padding: 10px 30px;
   min-width: 200px;
+  color: black;
+}
+
+.footer-container .page-links:hover {
+  color: #313131;
+}
+
+.footer-container .page-links:active {
+  color: #636363;
 }
 
 .footer-container .contact-review {

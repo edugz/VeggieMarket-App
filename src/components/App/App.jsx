@@ -14,6 +14,8 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import ShoppingCart from "../Pages/ShoppingCart/ShoppingCart";
 import NotFound from "../Pages/NotFound/NotFound";
 import ScrollToTop from "../Pages/ScrollToTop.jsx";
+import LeaveReview from "../Pages/LeaveReview/LeaveReview.jsx";
+import ContactUs from "../Pages/ContactUs/ContactUs.jsx";
 
 /**************************************************************/
 
@@ -62,6 +64,8 @@ function App() {
               />
             }
           />
+          <Route path="contact-us" element={<ContactUs />} />
+          <Route path="/leave-a-review" element={<LeaveReview />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

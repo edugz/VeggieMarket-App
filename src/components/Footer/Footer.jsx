@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 function Footer() {
@@ -6,8 +7,12 @@ function Footer() {
   return (
     <div className="footer-container">
       <div className="contact-review">
-        <p>Contact Us </p>
-        <p>Leave a review!</p>
+        <Link to="/contact-us" style={{ textDecoration: "none" }}>
+          <p className="page-links"> Contact Us </p>
+        </Link>
+        <Link to="leave-a-review" style={{ textDecoration: "none" }}>
+          <p className="page-links">Leave a review!</p>
+        </Link>
       </div>
       <div>
         <p>Copyright © {currentYear}</p>

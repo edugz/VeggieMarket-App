@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ShoppingCart.css";
 
 function ShoppingCart({ cart, handleAddToCart, handleSubtractFromCart }) {
@@ -63,6 +64,9 @@ function ShoppingCart({ cart, handleAddToCart, handleSubtractFromCart }) {
           <button>Submit Order</button>
         </div>
       </div>
+      <Link to="/">
+        <button className="go-back-button">Back</button>
+      </Link>
     </div>
   );
 }

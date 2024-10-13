@@ -48,9 +48,17 @@ function Header({ cartCount, handleSearchChange }) {
     }
   }, [searchInputValue]);
 
-  const headerClass = `header-container ${isShrunk ? "shrink" : ""} ${
-    location.pathname === "/about-us" ? "while-about" : ""
-  } ${location.pathname === "/shopping-cart" ? "while-about" : ""}`;
+  const locationPath = location.pathname;
+
+  const headerClass = `header-container ${isShrunk ? "shrink" : ""}
+  } ${
+    locationPath === "/about-us" ||
+    locationPath === "/shopping-cart" ||
+    locationPath === "/contact-us" ||
+    locationPath === "/leave-a-review"
+      ? "while-about"
+      : ""
+  }`;
 
   return (
     <div className={headerClass}>
@@ -70,7 +78,7 @@ function Header({ cartCount, handleSearchChange }) {
           <Link to="/about-us" style={{ textDecoration: "none" }}>
             <button>About Us</button>
           </Link>
-          <button>Events</button>
+          <button>Gallery</button>
           <button>Subscription</button>
         </div>
       </div>
