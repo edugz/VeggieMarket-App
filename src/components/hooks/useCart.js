@@ -1,10 +1,12 @@
 import { useState } from "react";
 
 function useCart() {
+  /* State Controllers */
   const [cart, setCart] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [productCounts, setProductCounts] = useState({});
 
+  /* Update Count Function */
   const updateCount = (uniqueId, newCount) => {
     setProductCounts((prevCounts) => ({
       ...prevCounts,
@@ -12,6 +14,15 @@ function useCart() {
     }));
   };
 
+  const addToCount = (count) => {
+    setCartCount((prevCount) => prevCount + count);
+  };
+
+  const subtractFromCount = (count) => {
+    setCartCount((prevCount) => Math.max(prevCount - count, 0));
+  };
+
+  /* Cart Item Control Functions */
   const addToCart = (item) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find(
@@ -63,23 +74,48 @@ function useCart() {
     });
   };
 
-  const addToCount = (count) => {
-    setCartCount((prevCount) => prevCount + count);
-  };
+  /* Handle Cart Item & Count Functions */
+  function handleAddToCart(uniqueId, index, name, weight, price) {
+    const itemToAdd = {
+      key: uniqueId,
+      index,
+      name,
+      weight,
+      price,
+    };
+    addToCart(itemToAdd);
+    addToCount(1);
+  }
 
-  const subtractFromCount = (count) => {
-    setCartCount((prevCount) => Math.max(prevCount - count, 0));
-  };
+  function handleSubtractFromCart(uniqueId, index, name, weight, price, count) {
+    if (count > 0) {
+      const itemToSubtract = {
+        key: uniqueId,
+        index,
+        name,
+        weight,
+        price,
+        quantity: count,
+      };
+      subtractFromCart(itemToSubtract);
+      subtractFromCount(1);
+    }
+  }
 
   return {
-    cartCount,
     cart,
-    addToCart,
-    subtractFromCart,
+    setCart,
+    cartCount,
+    setCartCount,
+    productCounts,
+    setProductCounts,
+    updateCount,
     addToCount,
     subtractFromCount,
-    productCounts,
-    updateCount,
+    addToCart,
+    subtractFromCart,
+    handleAddToCart,
+    handleSubtractFromCart,
   };
 }
 

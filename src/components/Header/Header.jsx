@@ -75,7 +75,7 @@ function Header({ cartCount, handleSearchChange }) {
         </div>
       </div>
       <SearchBar isShrunk={isShrunk} handleInputChange={handleInputChange} />
-      <ShoppingCartIcon isShrunk={isShrunk} cartCount={cartCount} />
+      <ShoppingCartIcon cartCount={cartCount} />
     </div>
   );
 }

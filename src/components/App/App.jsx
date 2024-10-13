@@ -16,58 +16,22 @@ import NotFound from "../Pages/NotFound/NotFound";
 import ScrollToTop from "../Pages/ScrollToTop.jsx";
 
 /**************************************************************/
-/* Code Renderization */
 
 function App() {
+  /* Cart Functions Import */
   const {
-    cartCount,
     cart,
-    addToCart,
-    subtractFromCart,
-    addToCount,
-    subtractFromCount,
+    cartCount,
     productCounts,
     updateCount,
+    handleAddToCart,
+    handleSubtractFromCart,
   } = useCart();
 
   const [searchQuery, setSearchQuery] = useState("");
-
   const handleSearchChange = (query) => {
     setSearchQuery(query);
   };
-
-  /************/
-
-  function handleAddToCart(uniqueId, index, name, weight, price, count) {
-    const itemToAdd = {
-      key: uniqueId,
-      index,
-      name,
-      weight,
-      price,
-    };
-
-    addToCart(itemToAdd);
-    addToCount(1);
-  }
-
-  function handleSubtractFromCart(uniqueId, index, name, weight, price, count) {
-    if (count > 0) {
-      const itemToSubtract = {
-        key: uniqueId,
-        index,
-        name,
-        weight,
-        price,
-        quantity: count,
-      };
-
-      subtractFromCart(itemToSubtract);
-      subtractFromCount(1);
-    }
-  }
-
-  /************/
 
   return (
     <>

@@ -50,14 +50,16 @@ function ShoppingCart({ cart, handleAddToCart, handleSubtractFromCart }) {
                   </button>
                 </div>
                 <span className="item-price">
-                  ${item.price * item.quantity}
+                  ¥ {item.price * item.quantity}
                 </span>
               </li>
             ))}
           </ul>
         </div>
         <div className="total-price-submit">
-          <p>TOTAL PRICE: ${totalPrice}</p>
+          <p className="total-price-quantity">
+            TOTAL PRICE: <span> ¥ {totalPrice}</span>
+          </p>
           <button>Submit Order</button>
         </div>
       </div>

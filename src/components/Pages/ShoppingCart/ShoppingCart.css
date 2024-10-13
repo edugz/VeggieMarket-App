@@ -71,6 +71,10 @@ h2 {
   color: #007bff;
 }
 
+.total-price-submit p span {
+  color: rgb(46, 161, 46);
+}
+
 button {
   background-color: #007bff;
   color: white;
