@@ -51,14 +51,14 @@ function App() {
     };
 
     addToCart(itemToAdd);
-    updateCount(uniqueId, count + 1);
     addToCount(1);
   }
 
-  function handleSubtractFromCart(uniqueId, name, weight, price, count) {
+  function handleSubtractFromCart(uniqueId, index, name, weight, price, count) {
     if (count > 0) {
       const itemToSubtract = {
         key: uniqueId,
+        index,
         name,
         weight,
         price,
@@ -66,23 +66,10 @@ function App() {
       };
 
       subtractFromCart(itemToSubtract);
-      updateCount(uniqueId, Math.max(count - 1, 0));
       subtractFromCount(1);
     }
   }
 
-  function handleManualChange(event) {
-    const value = parseInt(event.target.value, 10);
-    if (!isNaN(value) && value >= 0) {
-      const diff = value - count;
-      updateCount(uniqueId, value);
-      if (diff > 0) {
-        addToCount(diff);
-      } else if (diff < 0) {
-        subtractFromCount(diff * -1);
-      }
-    }
-  }
   /************/
 
   return (
@@ -95,18 +82,11 @@ function App() {
             path="/"
             element={
               <ItemList
-                addToCount={addToCount}
-                cartCount={cartCount}
-                setCartCount={setCartCount}
-                subtractFromCount={subtractFromCount}
                 searchQuery={searchQuery}
-                addToCart={addToCart}
-                subtractFromCart={subtractFromCart}
-                productCounts={productCounts}
                 updateCount={updateCount}
+                productCounts={productCounts}
                 handleAddToCart={handleAddToCart}
                 handleSubtractFromCart={handleSubtractFromCart}
-                handleManualChange={handleManualChange}
               />
             }
           />
@@ -123,6 +103,8 @@ function App() {
                 subtractFromCount={subtractFromCount}
                 setCart={setCart}
                 productCounts={productCounts}
+                handleAddToCart={handleAddToCart}
+                handleSubtractFromCart={handleSubtractFromCart}
               />
             }
           />

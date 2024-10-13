@@ -9,23 +9,26 @@ function ProductItem({
   id,
   name,
   image,
-  addToCount,
-  subtractFromCount,
-  addToCart,
-  subtractFromCart,
-  count,
-  updateCount,
+  productCounts,
   handleAddToCart,
   handleSubtractFromCart,
-  handleManualChange,
 }) {
-  const uniqueId = `${id}-${weight}`;
+  const uniqueId = `${name}-${weight}`;
 
   const counterProps = {
-    count,
-    onManualChange: handleManualChange,
-    onAdd: () => handleAddToCart(uniqueId, index, name, weight, price, count),
-    onSubtract: () => handleSubtractFromCart(uniqueId, name, weight, price, count),
+    productCounts,
+    onAdd: () =>
+      handleAddToCart(uniqueId, index, name, weight, price, productCounts),
+    onSubtract: () =>
+      handleSubtractFromCart(
+        uniqueId,
+        index,
+        name,
+        weight,
+        price,
+        productCounts[uniqueId]
+      ),
+    uniqueId,
   };
 
   return (
@@ -36,9 +39,9 @@ function ProductItem({
       </h3>
       <p>¥ {price}</p>
       <Counter {...counterProps} />
-      {count > 0 && (
+      {productCounts > 0 && (
         <div className="add-to-cart-container">
-          <p className="total-p">Total: ¥ {price * count} </p>
+          <p className="total-p">Total: ¥ {price * productCounts} </p>
         </div>
       )}
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./ShoppingCart.css";
 
-function ShoppingCart({ cart }) {
+function ShoppingCart({ cart, handleAddToCart, handleSubtractFromCart }) {
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -19,9 +19,35 @@ function ShoppingCart({ cart }) {
                   {item.name} {item.weight} kg
                 </span>
                 <div className="quantity-modifier">
-                  <button>-</button>
+                  <button
+                    onClick={() =>
+                      handleSubtractFromCart(
+                        `${item.index}-${item.weight}`,
+                        item.index,
+                        item.name,
+                        item.weight,
+                        item.price,
+                        item.quantity
+                      )
+                    }
+                  >
+                    -
+                  </button>
                   <span className="item-quantity">{item.quantity}</span>
-                  <button>+</button>
+                  <button
+                    onClick={() =>
+                      handleAddToCart(
+                        `${item.index}-${item.weight}`,
+                        item.index,
+                        item.name,
+                        item.weight,
+                        item.price,
+                        item.quantity
+                      )
+                    }
+                  >
+                    +
+                  </button>
                 </div>
                 <span className="item-price">
                   ${item.price * item.quantity}

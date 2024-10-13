@@ -1,11 +1,11 @@
 import React from "react";
 import "./Counter.css";
 
-function Counter({ count, onManualChange, onSubtract, onAdd }) {
+function Counter({ productCounts, onSubtract, onAdd, uniqueId }) {
   return (
     <div className="counter-container">
       <button onClick={onSubtract}>-</button>
-      <input value={count} onChange={onManualChange} readOnly />
+      <input value={productCounts[uniqueId] || 0} readOnly />
       <button onClick={onAdd}>+</button>
     </div>
   );

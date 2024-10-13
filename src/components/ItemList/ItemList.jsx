@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductItem from "./ProductItem/ProductItem";
 import "./ItemList.css";
 import inventory from "/public/inventory";
 
 function ItemList({
-  addToCount,
-  subtractFromCount,
   searchQuery,
-  addToCart,
-  subtractFromCart,
   updateCount,
   productCounts,
   handleAddToCart,
   handleSubtractFromCart,
-  handleManualChange,
 }) {
   const lowercasedQuery = searchQuery.trim().toLowerCase();
+
+/*   console.log("Current product counts:", productCounts); */
+
+  useEffect(() => {
+    console.log("Product counts updated:", productCounts);
+  }, [productCounts]);
+
 
   /* Function to Filter Inventory base on 'name' or 'weight' according to user input */
   const filteredItems = inventory.filter(({ name, prices }) => {
@@ -39,27 +41,29 @@ function ItemList({
       id,
       name,
       image,
-      addToCount,
-      subtractFromCount,
-      addToCart,
-      subtractFromCart,
       updateCount,
       handleAddToCart,
       handleSubtractFromCart,
-      handleManualChange,
     };
 
     /* Check if any name includes the user query */
     if (name.toLowerCase().includes(lowercasedQuery)) {
       return prices.map((priceItem, index) => {
-        const uniqueId = `${id}-${priceItem.weight}`;
+        const uniqueId = `${name}-${priceItem.weight}`;
         const productItemProps = {
           weight: priceItem.weight,
           price: priceItem.price,
           ...productItemCommonProps,
-          count: productCounts[uniqueId] || 0,
+          productCounts: productCounts,
           index,
         };
+/* 
+        console.log("Rendering product item:", {
+          uniqueId,
+          weight: priceItem.weight,
+          price: priceItem.price,
+          productCounts: productCounts,
+        }); */
 
         return (
           <ProductItem key={`${uniqueId}-${index}`} {...productItemProps} />
@@ -70,15 +74,22 @@ function ItemList({
     /* Check if any weight matches the user query */
     if (filteredWeight.length > 0) {
       return filteredWeight.map((priceItem, index) => {
-        const uniqueId = `${id}-${priceItem.weight}`;
+        const uniqueId = `${name}-${priceItem.weight}`;
         const productItemProps = {
           weight: priceItem.weight,
           price: priceItem.price,
           ...productItemCommonProps,
-          count: productCounts[uniqueId] || 0,
+          productCounts: productCounts,
           index,
         };
 
+/*         console.log("Rendering product item:", {
+          uniqueId,
+          weight: priceItem.weight,
+          price: priceItem.price,
+          productCounts: productCounts,
+        });
+         */
         return (
           <ProductItem key={`${uniqueId}-${index}`} {...productItemProps} />
         );
