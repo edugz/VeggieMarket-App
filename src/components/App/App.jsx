@@ -21,15 +21,12 @@ import ScrollToTop from "../Pages/ScrollToTop.jsx";
 function App() {
   const {
     cartCount,
-    setCartCount,
     cart,
-    setCart,
     addToCart,
     subtractFromCart,
     addToCount,
     subtractFromCount,
     productCounts,
-    setProductCounts,
     updateCount,
   } = useCart();
 
@@ -96,13 +93,6 @@ function App() {
             element={
               <ShoppingCart
                 cart={cart}
-                addToCart={addToCart}
-                updateCount={updateCount}
-                addToCount={addToCount}
-                subtractFromCart={subtractFromCart}
-                subtractFromCount={subtractFromCount}
-                setCart={setCart}
-                productCounts={productCounts}
                 handleAddToCart={handleAddToCart}
                 handleSubtractFromCart={handleSubtractFromCart}
               />

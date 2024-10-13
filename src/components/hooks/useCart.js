@@ -1,13 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function useCart() {
   const [cart, setCart] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [productCounts, setProductCounts] = useState({});
-
-  useEffect(() => {
-console.log("Product counts updated:", productCounts);
-  }, [productCounts]);
 
   const updateCount = (uniqueId, newCount) => {
     setProductCounts((prevCounts) => ({
@@ -45,8 +41,6 @@ console.log("Product counts updated:", productCounts);
           cartItem.name === item.name && cartItem.weight === item.weight
       );
 
-      console.log("Existing Item:", existingItem);
-
       if (existingItem) {
         const newQuantity = existingItem.quantity - 1;
         updateCount(`${item.name}-${item.weight}`, Math.max(newQuantity, 0));
@@ -58,7 +52,6 @@ console.log("Product counts updated:", productCounts);
               : cartItem
           );
         } else {
-          console.log("Removing item from cart:", item);
           return prevCart.filter(
             (cartItem) =>
               !(cartItem.name === item.name && cartItem.weight === item.weight)
@@ -66,7 +59,6 @@ console.log("Product counts updated:", productCounts);
         }
       }
 
-      console.log("Item not found in cart, returning previous cart.");
       return prevCart;
     });
   };
@@ -81,15 +73,12 @@ console.log("Product counts updated:", productCounts);
 
   return {
     cartCount,
-    setCartCount,
     cart,
-    setCart,
     addToCart,
     subtractFromCart,
     addToCount,
     subtractFromCount,
     productCounts,
-    setProductCounts,
     updateCount,
   };
 }

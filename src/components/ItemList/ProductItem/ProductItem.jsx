@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ProductItem.css";
 import Counter from "./Counter/Counter";
 
@@ -6,7 +6,6 @@ function ProductItem({
   index,
   weight,
   price,
-  id,
   name,
   image,
   productCounts,
@@ -39,9 +38,11 @@ function ProductItem({
       </h3>
       <p>¥ {price}</p>
       <Counter {...counterProps} />
-      {productCounts > 0 && (
+      {productCounts[`${name}-${weight}`] > 0 && (
         <div className="add-to-cart-container">
-          <p className="total-p">Total: ¥ {price * productCounts} </p>
+          <p className="total-p">
+            Total: ¥ {price * productCounts[`${name}-${weight}`]}{" "}
+          </p>
         </div>
       )}
     </div>

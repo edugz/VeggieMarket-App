@@ -124,27 +124,11 @@
   margin-top: 60px;
 }
 
-.header-container.while-about button {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.header-container.while-about p {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.header-container.while-about img {
-  opacity: 0;
-  visibility: hidden;
-}
-
+.header-container.while-about h2,
+.header-container.while-about p,
+.header-container.while-about button,
+.header-container.while-about img,
 .header-container.while-about input {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.header-container.while-about h2 {
   opacity: 0;
   visibility: hidden;
 }

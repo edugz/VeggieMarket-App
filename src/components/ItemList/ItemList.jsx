@@ -12,13 +12,6 @@ function ItemList({
 }) {
   const lowercasedQuery = searchQuery.trim().toLowerCase();
 
-/*   console.log("Current product counts:", productCounts); */
-
-  useEffect(() => {
-    console.log("Product counts updated:", productCounts);
-  }, [productCounts]);
-
-
   /* Function to Filter Inventory base on 'name' or 'weight' according to user input */
   const filteredItems = inventory.filter(({ name, prices }) => {
     const nameMatches = name.toLowerCase().includes(lowercasedQuery);
@@ -57,13 +50,6 @@ function ItemList({
           productCounts: productCounts,
           index,
         };
-/* 
-        console.log("Rendering product item:", {
-          uniqueId,
-          weight: priceItem.weight,
-          price: priceItem.price,
-          productCounts: productCounts,
-        }); */
 
         return (
           <ProductItem key={`${uniqueId}-${index}`} {...productItemProps} />
@@ -83,13 +69,6 @@ function ItemList({
           index,
         };
 
-/*         console.log("Rendering product item:", {
-          uniqueId,
-          weight: priceItem.weight,
-          price: priceItem.price,
-          productCounts: productCounts,
-        });
-         */
         return (
           <ProductItem key={`${uniqueId}-${index}`} {...productItemProps} />
         );
