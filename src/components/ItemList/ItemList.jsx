@@ -11,6 +11,9 @@ function ItemList({
   subtractFromCart,
   updateCount,
   productCounts,
+  handleAddToCart,
+  handleSubtractFromCart,
+  handleManualChange,
 }) {
   const lowercasedQuery = searchQuery.trim().toLowerCase();
 
@@ -41,6 +44,9 @@ function ItemList({
       addToCart,
       subtractFromCart,
       updateCount,
+      handleAddToCart,
+      handleSubtractFromCart,
+      handleManualChange,
     };
 
     /* Check if any name includes the user query */
@@ -52,6 +58,7 @@ function ItemList({
           price: priceItem.price,
           ...productItemCommonProps,
           count: productCounts[uniqueId] || 0,
+          index,
         };
 
         return (
@@ -69,6 +76,7 @@ function ItemList({
           price: priceItem.price,
           ...productItemCommonProps,
           count: productCounts[uniqueId] || 0,
+          index,
         };
 
         return (

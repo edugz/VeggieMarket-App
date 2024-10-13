@@ -39,6 +39,52 @@ function App() {
     setSearchQuery(query);
   };
 
+  /************/
+
+  function handleAddToCart(uniqueId, index, name, weight, price, count) {
+    const itemToAdd = {
+      key: uniqueId,
+      index,
+      name,
+      weight,
+      price,
+    };
+
+    addToCart(itemToAdd);
+    updateCount(uniqueId, count + 1);
+    addToCount(1);
+  }
+
+  function handleSubtractFromCart(uniqueId, name, weight, price, count) {
+    if (count > 0) {
+      const itemToSubtract = {
+        key: uniqueId,
+        name,
+        weight,
+        price,
+        quantity: count,
+      };
+
+      subtractFromCart(itemToSubtract);
+      updateCount(uniqueId, Math.max(count - 1, 0));
+      subtractFromCount(1);
+    }
+  }
+
+  function handleManualChange(event) {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 0) {
+      const diff = value - count;
+      updateCount(uniqueId, value);
+      if (diff > 0) {
+        addToCount(diff);
+      } else if (diff < 0) {
+        subtractFromCount(diff * -1);
+      }
+    }
+  }
+  /************/
+
   return (
     <>
       <div className="app-container">
@@ -58,6 +104,9 @@ function App() {
                 subtractFromCart={subtractFromCart}
                 productCounts={productCounts}
                 updateCount={updateCount}
+                handleAddToCart={handleAddToCart}
+                handleSubtractFromCart={handleSubtractFromCart}
+                handleManualChange={handleManualChange}
               />
             }
           />
