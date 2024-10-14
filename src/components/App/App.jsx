@@ -33,6 +33,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const handleSearchChange = (query) => {
     setSearchQuery(query);
+    
   };
 
   return (
