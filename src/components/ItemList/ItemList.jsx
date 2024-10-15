@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../hooks/CartContext";
 import ProductItem from "./ProductItem/ProductItem";
 import "./ItemList.css";
 import inventory from "/public/inventory";
 
-function ItemList({
-  searchQuery,
-  updateCount,
-  productCounts,
-  handleAddToCart,
-  handleSubtractFromCart,
-}) {
+function ItemList({ searchQuery }) {
+  const {
+    updateCount,
+    productCounts,
+    handleAddToCart,
+    handleSubtractFromCart,
+  } = useContext(CartContext);
+
   const lowercasedQuery = searchQuery.trim().toLowerCase();
 
   /* Function to Filter Inventory base on 'name' or 'weight' according to user input */

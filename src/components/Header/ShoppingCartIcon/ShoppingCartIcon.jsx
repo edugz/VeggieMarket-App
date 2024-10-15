@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../hooks/CartContext";
 import "./ShoppingCartIcon.css";
 
-function ShoppingCartIcon({ cartCount }) {
+function ShoppingCartIcon() {
+  const { cartCount } = useContext(CartContext);
+
   return (
     <div className="shopping-cart-icon-container">
       {cartCount > 0 && <h2 className={`cart-count`}>{cartCount}</h2>}

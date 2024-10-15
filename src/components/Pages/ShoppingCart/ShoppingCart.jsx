@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../hooks/CartContext.jsx";
 import "./ShoppingCart.css";
 
-function ShoppingCart({ cart, handleAddToCart, handleSubtractFromCart }) {
+function ShoppingCart() {
+  const { cart, handleAddToCart, handleSubtractFromCart } =
+    useContext(CartContext);
+
   const totalPrice = cart.reduce(
     (total, { price, quantity }) => total + price * quantity,
     0

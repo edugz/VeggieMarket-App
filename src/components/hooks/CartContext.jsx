@@ -1,6 +1,8 @@
-import { useState } from "react";
+import React, { useState, createContext } from "react";
 
-function useCart() {
+const CartContext = createContext();
+
+function CartProvider({ children }) {
   /* State Controllers */
   const [cart, setCart] = useState([]);
   const [cartCount, setCartCount] = useState(0);
@@ -102,21 +104,27 @@ function useCart() {
     }
   }
 
-  return {
-    cart,
-    setCart,
-    cartCount,
-    setCartCount,
-    productCounts,
-    setProductCounts,
-    updateCount,
-    addToCount,
-    subtractFromCount,
-    addToCart,
-    subtractFromCart,
-    handleAddToCart,
-    handleSubtractFromCart,
-  };
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        setCart,
+        cartCount,
+        setCartCount,
+        productCounts,
+        setProductCounts,
+        updateCount,
+        addToCount,
+        subtractFromCount,
+        addToCart,
+        subtractFromCart,
+        handleAddToCart,
+        handleSubtractFromCart,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
 }
 
-export default useCart;
+export { CartContext, CartProvider };

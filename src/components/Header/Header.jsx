@@ -4,7 +4,7 @@ import "./Header.css";
 import SearchBar from "./SearchBar/SearchBar";
 import ShoppingCartIcon from "./ShoppingCartIcon/ShoppingCartIcon";
 
-function Header({ cartCount, handleSearchChange }) {
+function Header({ handleSearchChange }) {
   const [isShrunk, setIsShrunk] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
 
@@ -83,7 +83,7 @@ function Header({ cartCount, handleSearchChange }) {
         </div>
       </div>
       <SearchBar isShrunk={isShrunk} handleInputChange={handleInputChange} />
-      <ShoppingCartIcon cartCount={cartCount} />
+      <ShoppingCartIcon />
     </div>
   );
 }

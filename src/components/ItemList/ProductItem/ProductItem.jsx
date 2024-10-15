@@ -2,6 +2,7 @@ import React from "react";
 import "./ProductItem.css";
 import Counter from "./Counter/Counter";
 
+
 function ProductItem({
   index,
   weight,

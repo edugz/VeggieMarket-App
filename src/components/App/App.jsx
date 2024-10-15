@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import useCart from "../hooks/useCart.js";
+import { CartProvider } from "../hooks/CartContext.jsx";
+import useSearch from "../hooks/useSearch.js";
 
 /* Components Import */
 import Header from "../Header/Header";
@@ -20,58 +21,26 @@ import ContactUs from "../Pages/ContactUs/ContactUs.jsx";
 /**************************************************************/
 
 function App() {
-  /* Cart Functions Import */
-  const {
-    cart,
-    cartCount,
-    productCounts,
-    updateCount,
-    handleAddToCart,
-    handleSubtractFromCart,
-  } = useCart();
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const handleSearchChange = (query) => {
-    setSearchQuery(query);
-    
-  };
+  const { searchQuery, handleSearchChange } = useSearch();
 
   return (
-    <>
-      <div className="app-container">
-        <Header cartCount={cartCount} handleSearchChange={handleSearchChange} />
-        <ScrollToTop />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ItemList
-                searchQuery={searchQuery}
-                updateCount={updateCount}
-                productCounts={productCounts}
-                handleAddToCart={handleAddToCart}
-                handleSubtractFromCart={handleSubtractFromCart}
-              />
-            }
-          />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route
-            path="/shopping-cart"
-            element={
-              <ShoppingCart
-                cart={cart}
-                handleAddToCart={handleAddToCart}
-                handleSubtractFromCart={handleSubtractFromCart}
-              />
-            }
-          />
-          <Route path="contact-us" element={<ContactUs />} />
-          <Route path="/leave-a-review" element={<LeaveReview />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </div>
-    </>
+    <CartProvider>
+      <>
+        <div className="app-container">
+          <Header handleSearchChange={handleSearchChange} />
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<ItemList searchQuery={searchQuery} />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/shopping-cart" element={<ShoppingCart />} />
+            <Route path="contact-us" element={<ContactUs />} />
+            <Route path="/leave-a-review" element={<LeaveReview />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </div>
+      </>
+    </CartProvider>
   );
 }
 
