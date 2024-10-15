@@ -51,14 +51,7 @@ function Header({ handleSearchChange }) {
   const locationPath = location.pathname;
 
   const headerClass = `header-container ${isShrunk ? "shrink" : ""}
-  } ${
-    locationPath === "/about-us" ||
-    locationPath === "/shopping-cart" ||
-    locationPath === "/contact-us" ||
-    locationPath === "/leave-a-review"
-      ? "while-about"
-      : ""
-  }`;
+  } ${locationPath !== "/" ? "while-about" : ""}`;
 
   return (
     <div className={headerClass}>

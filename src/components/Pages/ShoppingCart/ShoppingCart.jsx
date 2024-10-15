@@ -1,11 +1,20 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../hooks/CartContext.jsx";
 import "./ShoppingCart.css";
 
 function ShoppingCart() {
   const { cart, handleAddToCart, handleSubtractFromCart } =
     useContext(CartContext);
+
+  const navigate = useNavigate();
+  function handleProceedToCheckout() {
+    if (cart.length > 0) {
+      navigate("/shopping-cart/checkout");
+    } else {
+      alert("Your cart is empty! Please add items to proceed to checkout.");
+    }
+  }
 
   const totalPrice = cart.reduce(
     (total, { price, quantity }) => total + price * quantity,
@@ -63,7 +72,7 @@ function ShoppingCart() {
           <p className="total-price-quantity">
             TOTAL PRICE: <span> ¥ {totalPrice}</span>
           </p>
-          <button>Submit Order</button>
+          <button onClick={handleProceedToCheckout}>Proceed to Checkout</button>
         </div>
       </div>
       <Link to="/">

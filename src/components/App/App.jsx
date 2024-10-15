@@ -13,6 +13,8 @@ import Footer from "../Footer/Footer";
 /* Page-component Import */
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import ShoppingCart from "../Pages/ShoppingCart/ShoppingCart";
+import Checkout from "../Pages/ShoppingCart/Checkout/Checkout.jsx";
+import ThankYouPage from "../Pages/ShoppingCart/Checkout/ThankYouPage/ThankYouPage.jsx";
 import NotFound from "../Pages/NotFound/NotFound";
 import ScrollToTop from "../Pages/ScrollToTop.jsx";
 import LeaveReview from "../Pages/LeaveReview/LeaveReview.jsx";
@@ -32,7 +34,14 @@ function App() {
           <Routes>
             <Route path="/" element={<ItemList searchQuery={searchQuery} />} />
             <Route path="/about-us" element={<AboutUs />} />
+
             <Route path="/shopping-cart" element={<ShoppingCart />} />
+            <Route
+              path="/shopping-cart/checkout"
+              element={<Checkout />}
+            ></Route>
+            <Route path="/thank-you" element={<ThankYouPage />}></Route>
+
             <Route path="contact-us" element={<ContactUs />} />
             <Route path="/leave-a-review" element={<LeaveReview />} />
             <Route path="*" element={<NotFound />} />
