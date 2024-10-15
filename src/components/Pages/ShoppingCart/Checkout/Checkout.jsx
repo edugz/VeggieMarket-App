@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import emailjs from "emailjs-com";
 import "./Checkout.css";
 
 function CheckoutForm() {
@@ -9,7 +10,7 @@ function CheckoutForm() {
     address: "",
     contactMethod: "",
     contactDetails: "",
-    details: "",
+    information: "",
   });
 
   const [isContactDetailsVisible, setIsContactDetailsVisible] = useState(false);
@@ -31,8 +32,32 @@ function CheckoutForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Form Data Submitted: ", formData);
-    navigate("/thank-you");
+    emailjs
+      .send(
+        "service_udbcvxm",
+        "template_v4l83um",
+        {
+          name: formData.name,
+          address: formData.address,
+          contactMethod: formData.contactMethod,
+          contactDetails: formData.contactDetails,
+          information: formData.information,
+        },
+        "OM4CUFIGRqyF_5YI6"
+      )
+      .then(
+        (response) => {
+          console.log(
+            "Email sent successfully!",
+            response.status,
+            response.text
+          );
+          navigate("/thank-you");
+        },
+        (error) => {
+          console.error("Failed to send email. Error: ", error);
+        }
+      );
   };
 
   /* Form Render */
@@ -96,12 +121,12 @@ function CheckoutForm() {
           )}
 
           <label className="checkout-label">
-            Additional Details (optional):
+            Additional Information (optional):
             <input
               className="checkout-input"
               type="text"
-              name="details"
-              value={formData.details}
+              name="information"
+              value={formData.information}
               onChange={handleChange}
               placeholder="Enter any additional information"
             />
