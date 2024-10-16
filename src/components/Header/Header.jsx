@@ -71,8 +71,9 @@ function Header({ handleSearchChange }) {
           <Link to="/about-us" style={{ textDecoration: "none" }}>
             <button>About Us</button>
           </Link>
-          <button>Gallery</button>
-          <button>Subscription</button>
+          <Link to="/gallery" style={{ textDecoration: "none" }}>
+            <button>Gallery</button>
+          </Link>
         </div>
       </div>
       <SearchBar isShrunk={isShrunk} handleInputChange={handleInputChange} />

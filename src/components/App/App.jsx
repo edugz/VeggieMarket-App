@@ -12,6 +12,7 @@ import Footer from "../Footer/Footer";
 
 /* Page-component Import */
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import Gallery from "../Pages/Gallery/Gallery.jsx";
 import ShoppingCart from "../Pages/ShoppingCart/ShoppingCart";
 import Checkout from "../Pages/ShoppingCart/Checkout/Checkout.jsx";
 import ThankYouPage from "../Pages/ShoppingCart/Checkout/ThankYouPage/ThankYouPage.jsx";
@@ -33,7 +34,9 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<ItemList searchQuery={searchQuery} />} />
+
             <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/gallery" element={<Gallery />} />
 
             <Route path="/shopping-cart" element={<ShoppingCart />} />
             <Route
@@ -44,6 +47,7 @@ function App() {
 
             <Route path="contact-us" element={<ContactUs />} />
             <Route path="/leave-a-review" element={<LeaveReview />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
