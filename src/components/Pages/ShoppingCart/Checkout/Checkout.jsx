@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "emailjs-com";
+import { CartContext } from "../../../hooks/CartContext.jsx";
 import "./Checkout.css";
 
 function CheckoutForm() {
+  const { cart, resetCart } = useContext(CartContext);
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     address: "",
-    contactMethod: "",
-    contactDetails: "",
+    contactDetailsPhone: "",
+    contactDetailsEmail: "",
     information: "",
   });
-
-  const [isContactDetailsVisible, setIsContactDetailsVisible] = useState(false);
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -22,26 +23,50 @@ function CheckoutForm() {
       ...prevFormData,
       [name]: value,
     }));
-
-    if (name === "contactMethod") {
-      setIsContactDetailsVisible(value !== "");
-    }
   };
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const formattedCartItems = cart
+      .map(
+        (item) =>
+          `<b>${item.name}</b> (${item.weight}kg)<br>
+          <b>Quantity:</b> ${item.quantity}u<br> 
+          <b>Item Price:</b> ¥${item.price * item.quantity}`
+      )
+      .join("<br><br>");
+
+    const totalPrice = cart.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+
+    const fullOrderDetails = `
+    ${formattedCartItems}<br><br>---<br>
+    <b>Total Price:</b> ¥${totalPrice}<br>---`;
+
+    const formattedFormData = `
+    <b>Name:</b> ${formData.name}<br>
+    <br>
+    <b>Address:</b> ${formData.address}<br>
+    <br>
+    <b>Phone Number:</b> ${formData.contactDetailsPhone}<br>
+    <br>
+    <b>Email:</b> ${formData.contactDetailsEmail}<br>
+    <br>
+    <b>Additional Info:</b> ${formData.information}`;
+
     emailjs
       .send(
         "service_udbcvxm",
         "template_v4l83um",
         {
-          name: formData.name,
-          address: formData.address,
-          contactMethod: formData.contactMethod,
-          contactDetails: formData.contactDetails,
-          information: formData.information,
+          formData: formattedFormData,
+          /* Cart */
+          cartItems: fullOrderDetails,
+          orderName: formData.name,
         },
         "OM4CUFIGRqyF_5YI6"
       )
@@ -52,6 +77,18 @@ function CheckoutForm() {
             response.status,
             response.text
           );
+
+          // Reset form data
+          setFormData({
+            name: "",
+            address: "",
+            contactDetailsPhone: "",
+            contactDetailsEmail: "",
+            information: "",
+          });
+
+          resetCart();
+
           navigate("/thank-you");
         },
         (error) => {
@@ -75,6 +112,7 @@ function CheckoutForm() {
               value={formData.name}
               onChange={handleChange}
               required
+              placeholder="Fullname..."
             />
           </label>
           <label className="checkout-label">
@@ -86,39 +124,37 @@ function CheckoutForm() {
               value={formData.address}
               onChange={handleChange}
               required
+              placeholder="Address..."
             />
           </label>
+
           <label className="checkout-label">
-            Preferred Method of Contact:
-            <select
-              className="checkout-select"
-              name="contactMethod"
-              value={formData.contactMethod}
+            Phone Number:
+            {formData.contactMethodPhone}
+            <input
+              className="checkout-input"
+              type="text"
+              name="contactDetailsPhone"
+              value={formData.contactDetailsPhone}
               onChange={handleChange}
               required
-            >
-              <option value="">Select</option>
-              <option value="email">Email</option>
-              <option value="phonecall">Phone Call</option>
-              <option value="whatsapp">WhatsApp</option>
-            </select>
+              placeholder="Phone Number..."
+            />
           </label>
 
-          {isContactDetailsVisible && (
-            <label className="checkout-label">
-              {formData.contactMethod === "email" && "Email:"}
-              {formData.contactMethod === "phonecall" && "Phone Number:"}
-              {formData.contactMethod === "whatsapp" && "WhatsApp Number:"}
-              <input
-                className="checkout-input"
-                type="text"
-                name="contactDetails"
-                value={formData.contactDetails}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          )}
+          <label className="checkout-label">
+            Email:
+            {formData.contactMethodEmail}
+            <input
+              className="checkout-input"
+              type="text"
+              name="contactDetailsEmail"
+              value={formData.contactDetailsEmail}
+              onChange={handleChange}
+              required
+              placeholder="Email..."
+            />
+          </label>
 
           <label className="checkout-label">
             Additional Information (optional):

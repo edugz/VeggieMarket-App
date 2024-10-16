@@ -104,6 +104,12 @@ function CartProvider({ children }) {
     }
   }
 
+  const resetCart = () => {
+    setCart([]);
+    setCartCount(0);
+    setProductCounts({});
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -120,6 +126,7 @@ function CartProvider({ children }) {
         subtractFromCart,
         handleAddToCart,
         handleSubtractFromCart,
+        resetCart,
       }}
     >
       {children}

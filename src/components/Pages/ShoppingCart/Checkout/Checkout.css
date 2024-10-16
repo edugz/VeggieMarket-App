@@ -32,7 +32,26 @@
   font-size: 1.2rem;
 }
 
-.checkout-input,
+.checkout-input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  background-color: #f9f9f9;
+}
+
+.checkout-input::placeholder {
+  color: #aaa;
+}
+
+.checkout-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  background-color: #fff;
+}
+
 .checkout-select {
   padding: 10px;
   font-size: 1rem;
@@ -41,7 +60,6 @@
   margin-top: 5px;
 }
 
-.checkout-input:focus,
 .checkout-select:focus {
   border-color: #007bff;
   outline: none;
@@ -49,14 +67,15 @@
 }
 
 .checkout-submit {
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 1rem;
   color: #ffffff;
   background-color: #007bff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
 }
 
 .checkout-submit:hover {
