@@ -7,10 +7,8 @@ function ThankYouPage() {
     <div className="thank-you-main">
       <div className="thank-you-container">
         <div className="thank-you">Thank You!</div>
-        <p className="thank-you-message">
-          We will be contacting you soon to arrange
-        </p>
-        <p className="thank-you-message"> payment and shipping!</p>
+        <p className="thank-you-message">We will be contacting you soon!</p>
+        <p className="thank-you-message"></p>
         <Link to="/">
           <button className="go-home-button">Home</button>
         </Link>

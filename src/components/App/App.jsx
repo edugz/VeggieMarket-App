@@ -15,7 +15,7 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import Gallery from "../Pages/Gallery/Gallery.jsx";
 import ShoppingCart from "../Pages/ShoppingCart/ShoppingCart";
 import Checkout from "../Pages/ShoppingCart/Checkout/Checkout.jsx";
-import ThankYouPage from "../Pages/ShoppingCart/Checkout/ThankYouPage/ThankYouPage.jsx";
+import ThankYouPage from "../Pages/ThankYouPage/ThankYouPage.jsx";
 import NotFound from "../Pages/NotFound/NotFound";
 import ScrollToTop from "../Pages/ScrollToTop.jsx";
 import LeaveReview from "../Pages/LeaveReview/LeaveReview.jsx";
